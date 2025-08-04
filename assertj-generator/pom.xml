@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.assertj</groupId>
     <artifactId>assertj-generator-build</artifactId>
-    <version>3.0.0-M6-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>assertj-generator</artifactId>
@@ -17,8 +17,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- Needed to properly bring in the Maven dependencies, see http://maven.apache.org/surefire/maven-surefire-plugin/examples/class-loading.html -->
     <surefire.useSystemClassLoader>false</surefire.useSystemClassLoader>
-    <!-- Dependency versions overriding -->
-    <junit-jupiter.version>5.11.1</junit-jupiter.version>
   </properties>
 
   <dependencyManagement>
