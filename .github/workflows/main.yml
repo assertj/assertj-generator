@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
         with:
           distribution: 'zulu'
-          java-version: '21'
+          java-version: '25'
           cache: 'maven'
       - name: Test
         run: ./mvnw $MAVEN_ARGS verify
@@ -34,7 +34,7 @@ jobs:
         uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
         with:
           distribution: 'zulu'
-          java-version: '21'
+          java-version: '25'
           cache: 'maven'
       - name: Generate Javadoc
         run: ./mvnw $MAVEN_ARGS -DskipTests package javadoc:javadoc
@@ -51,7 +51,7 @@ jobs:
         uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
         with:
           distribution: 'zulu'
-          java-version: '21'
+          java-version: '25'
           cache: 'maven'
       - name: Test with Sonar
         run: >
@@ -77,7 +77,7 @@ jobs:
         uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
         with:
           distribution: 'zulu'
-          java-version: '21'
+          java-version: '25'
           server-id: central
           server-username: MAVEN_CENTRAL_USERNAME
           server-password: MAVEN_CENTRAL_TOKEN
