@@ -119,7 +119,7 @@ public class Templates {
       } catch (@SuppressWarnings("unused") Exception e) {
         // best effort : if we can't read user template, use the default one.
         report.registerUserTemplate("Use default " + templateDescription
-                                    + " assertion template as we failed to to read user template from "
+                                    + " assertion template as we failed to read user template from "
                                     + templatesDirectory + userTemplate);
       }
     }
