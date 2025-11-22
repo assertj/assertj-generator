@@ -68,13 +68,13 @@ public class AssertJAssertionsGeneratorMojo extends AbstractMojo {
   public String targetDir;
 
   /**
-   * Package where generated assertion classes will reside.
-   * <p/>
+   * <p>Package where generated assertion classes will reside.</p>
+   * <p>
    * If not set (or set to empty), each assertion class is generated in the package of the corresponding class to assert.
    * For example the generated assertion class for com.nba.Player will be com.nba.PlayerAssert (in the same package as Player).
-   * Defaults to ''.<br>
-   * <p/>
-   * Note that the Assertions entry point classes package is controlled by the entryPointClassPackage property.
+   * Defaults to ''.
+   * </p>
+   * <p>Note that the Assertions entry point classes package is controlled by the entryPointClassPackage property.</p>
    */
   @Parameter(defaultValue = "", property = "assertj.generateAssertionsInPackage")
   public String generateAssertionsInPackage;
