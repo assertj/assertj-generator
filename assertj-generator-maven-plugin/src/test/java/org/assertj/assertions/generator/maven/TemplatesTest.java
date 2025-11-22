@@ -55,6 +55,6 @@ public class TemplatesTest {
     templates.loadUserTemplate("unknown", Template.Type.HAS, "my has template", list, report);
     // THEN
     assertThat(list).isEmpty();
-    assertThat(report.getUserTemplates()).containsOnly("Use default my has template assertion template as we failed to to read user template from target/test-classes/templates/unknown");
+    assertThat(report.getUserTemplates()).containsOnly("Use default my has template assertion template as we failed to read user template from target/test-classes/templates/unknown");
   }
 }
