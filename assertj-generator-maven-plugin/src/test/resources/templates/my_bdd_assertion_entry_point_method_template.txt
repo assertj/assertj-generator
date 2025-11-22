@@ -1,0 +1,9 @@
+  /** my_bdd_assertion_entry_point_method_template
+   * Creates a new instance of <code>{@link ${custom_assertion_class}}</code>.
+   *
+   * @param actual the actual value.
+   * @return the created assertion object.
+   */
+  public static ${custom_assertion_class} then(${class_to_assert} actual) {
+    return new ${custom_assertion_class}(actual);
+  }
