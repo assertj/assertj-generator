@@ -13,7 +13,7 @@
   <name>Maven plugin for AssertJ assertions generator</name>
 
   <properties>
-    <!-- #113 Temporally disable jacoco for this module as coverage checks are not been met -->
+    <!-- #113 Temporarily disable jacoco for this module as coverage checks are not been met -->
     <jacoco.skip>true</jacoco.skip>
   </properties>
 
