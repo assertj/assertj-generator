@@ -1,0 +1,84 @@
+
+  /** my_has_elements_assertion_template_for_array
+   * Verifies that the actual ${class_to_assert}'s ${property} contains the given ${elementType} elements.
+   * @param ${property_safe} the given elements that should be contained in actual ${class_to_assert}'s ${property}.
+   * @return this assertion object.
+   * @throws AssertionError if the actual ${class_to_assert}'s ${property} does not contain all given ${elementType} elements.${throws_javadoc}
+   */
+  public ${self_type} has${Property}(${elementType}... ${property_safe}) ${throws}{
+    // check that actual ${class_to_assert} we want to make assertions on is not null.
+    isNotNull();
+
+    // check that given ${elementType} varargs is not null.
+    if (${property_safe} == null) failWithMessage("Expecting ${property} parameter not to be null.");
+    
+    // check with standard error message (use overridingErrorMessage before contains to set your own message).
+    Assertions.assertThat(actual.get${Property}()).contains(${property_safe});
+
+    // return the current assertion for method chaining
+    return ${myself};
+  }
+
+  /**
+   * Verifies that the actual ${class_to_assert}'s ${property} contains <b>only<b> the given ${elementType} elements and nothing else in whatever order.
+   * 
+   * @param ${property_safe} the given elements that should be contained in actual ${class_to_assert}'s ${property}.
+   * @return this assertion object.
+   * @throws AssertionError if the actual ${class_to_assert}'s ${property} does not contain all given ${elementType} elements and nothing else.${throws_javadoc}
+   */
+  public ${self_type} hasOnly${Property}(${elementType}... ${property_safe}) ${throws}{
+    // check that actual ${class_to_assert} we want to make assertions on is not null.
+    isNotNull();
+
+    // check that given ${elementType} varargs is not null.
+    if (${property_safe} == null) failWithMessage("Expecting ${property} parameter not to be null.");
+    
+    // check with standard error message (use overridingErrorMessage before contains to set your own message).
+    Assertions.assertThat(actual.get${Property}()).containsOnly(${property_safe});
+
+    // return the current assertion for method chaining
+    return ${myself};
+  }
+
+  /**
+   * Verifies that the actual ${class_to_assert}'s ${property} does not contain the given ${elementType} elements.
+   *
+   * @param ${property_safe} the given elements that should not be in actual ${class_to_assert}'s ${property}.
+   * @return this assertion object.
+   * @throws AssertionError if the actual ${class_to_assert}'s ${property} contains any given ${elementType} elements.${throws_javadoc}
+   */
+  public ${self_type} doesNotHave${Property}(${elementType}... ${property_safe}) ${throws}{
+    // check that actual ${class_to_assert} we want to make assertions on is not null.
+    isNotNull();
+
+    // check that given ${elementType} varargs is not null.
+    if (${property_safe} == null) failWithMessage("Expecting ${property} parameter not to be null.");
+    
+    // check with standard error message (use overridingErrorMessage before contains to set your own message).
+    Assertions.assertThat(actual.get${Property}()).doesNotContain(${property_safe});
+
+    // return the current assertion for method chaining
+    return ${myself};
+  }
+
+  /**
+   * Verifies that the actual ${class_to_assert} has no ${property}.
+   * @return this assertion object.
+   * @throws AssertionError if the actual ${class_to_assert}'s ${property} is not empty.${throws_javadoc}
+   */
+  public ${self_type} hasNo${Property}() ${throws}{
+    // check that actual ${class_to_assert} we want to make assertions on is not null.
+    isNotNull();
+
+    // we override the default error message with a more explicit one
+    String assertjErrorMessage = "\nExpecting :\n  <%s>\nnot to have ${property} but had :\n  <%s>";
+    
+    // check
+    if (actual.get${Property}().length > 0)  {
+      failWithMessage(assertjErrorMessage, actual, java.util.Arrays.toString(actual.get${Property}()));
+    }
+    
+    // return the current assertion for method chaining
+    return ${myself};
+  }
+  
