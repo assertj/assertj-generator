@@ -88,7 +88,6 @@ public class AssertionsGenerator {
    * @param destDir the base directory where the classes are going to be generated.
    * @param entryPointFilePackage the package of the assertions entry point class, may be <code>null</code>.
    * @param includePackagePrivateClasses collect package private classes if true.
-   * @throws IOException if the files can't be generated
    */
   @SuppressWarnings("unchecked")
   public AssertionsGeneratorReport generateAssertionsFor(String[] inputPackages, String[] inputClassNames,
