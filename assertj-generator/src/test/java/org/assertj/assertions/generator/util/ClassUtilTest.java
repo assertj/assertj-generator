@@ -288,11 +288,11 @@ class ClassUtilTest implements NestedClassesTest {
     Method[] methodsActualFirst = new Method[] { actualGetter, bridgeGetter };
     Method[] methodsBridgeFirst = new Method[] { bridgeGetter, actualGetter };
 
-    assertThat(filterGetterMethods(methodsActualFirst, Collections.emptySet(), false))
-      .singleElement().extracting(Method::getReturnType).isEqualTo(String.class);
+    Set<Method> getterMethods1 = filterGetterMethods(methodsActualFirst, Collections.emptySet(), false);
+    assertThat(getterMethods1).singleElement().extracting(Method::getReturnType).isEqualTo(String.class);
 
-    assertThat(filterGetterMethods(methodsBridgeFirst, Collections.emptySet(), false))
-      .singleElement().extracting(Method::getReturnType).isEqualTo(String.class);
+    Set<Method> getterMethods2 = filterGetterMethods(methodsBridgeFirst, Collections.emptySet(), false);
+    assertThat(getterMethods2).singleElement().extracting(Method::getReturnType).isEqualTo(String.class);
   }
 
   @ParameterizedTest
