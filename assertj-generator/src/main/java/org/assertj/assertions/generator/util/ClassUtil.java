@@ -463,12 +463,13 @@ public class ClassUtil {
     return filterGetterMethods(clazz.getMethods(), includeAnnotations, isClassAnnotated);
   }
 
-  private static Set<Method> filterGetterMethods(Method[] methods, Set<Class<?>> includeAnnotations,
+  static Set<Method> filterGetterMethods(Method[] methods, Set<Class<?>> includeAnnotations,
                                                  boolean isClassAnnotated) {
     Set<Method> getters = new TreeSet<>(GETTER_COMPARATOR);
     for (Method method : methods) {
       if (isPublic(method.getModifiers())
           && isNotDefinedInObjectClass(method)
+          && !method.isBridge()
           && isGetter(method, includeAnnotations, isClassAnnotated)) {
         getters.add(method);
       }
