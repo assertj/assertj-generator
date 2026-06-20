@@ -50,11 +50,13 @@ import org.junit.jupiter.params.provider.FieldSource;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import static java.util.Arrays.asList;
 import static org.assertj.assertions.generator.util.ClassUtil.collectClasses;
@@ -77,6 +79,7 @@ import static org.assertj.assertions.generator.util.ClassUtil.isValidGetterName;
 import static org.assertj.assertions.generator.util.ClassUtil.propertyNameOf;
 import static org.assertj.assertions.generator.util.ClassUtil.resolveTypeNameInPackage;
 import static org.assertj.assertions.generator.util.ClassUtil.visibilityOf;
+import static org.assertj.assertions.generator.util.ClassUtil.filterGetterMethods;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -276,6 +279,22 @@ class ClassUtilTest implements NestedClassesTest {
       assertThat(getterProperty("get")).isEqualTo("get");
   }
 
+  @Test
+  void should_not_return_getter_bridge_methods() throws Exception {
+    Method[] methods = ConcreteClass.class.getDeclaredMethods();
+    Method actualGetter = Arrays.stream(methods).filter(Predicate.not(Method::isBridge)).findFirst().orElseThrow();
+    Method bridgeGetter = Arrays.stream(methods).filter(Method::isBridge).findFirst().orElseThrow();
+
+    Method[] methodsActualFirst = new Method[] { actualGetter, bridgeGetter };
+    Method[] methodsBridgeFirst = new Method[] { bridgeGetter, actualGetter };
+
+    assertThat(filterGetterMethods(methodsActualFirst, Collections.emptySet(), false))
+      .singleElement().extracting(Method::getReturnType).isEqualTo(String.class);
+
+    assertThat(filterGetterMethods(methodsBridgeFirst, Collections.emptySet(), false))
+      .singleElement().extracting(Method::getReturnType).isEqualTo(String.class);
+  }
+
   @ParameterizedTest
   @FieldSource("NESTED_CLASSES")
   void should_return_inner_class_name_with_outer_class_name(NestedClass nestedClass) {
@@ -473,6 +492,16 @@ class ClassUtilTest implements NestedClassesTest {
     }
 
     public <T extends Number> T getNumber() {
+      return null;
+    }
+  }
+
+  private static abstract class AbstractClassWithGeneric<T extends Object> {
+    public abstract T getValue();
+  }
+  private static class ConcreteClass extends AbstractClassWithGeneric<String> {
+    @Override
+    public String getValue() {
       return null;
     }
   }
