@@ -56,9 +56,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import static java.util.Arrays.asList;
+import static java.util.Arrays.stream;
+import static java.util.Collections.emptySet;
+import static java.util.function.Predicate.not;
 import static org.assertj.assertions.generator.util.ClassUtil.collectClasses;
 import static org.assertj.assertions.generator.util.ClassUtil.declaredGetterMethodsOf;
 import static org.assertj.assertions.generator.util.ClassUtil.getAllFieldsInHierarchy;
@@ -280,18 +282,18 @@ class ClassUtilTest implements NestedClassesTest {
   }
 
   @Test
-  void should_not_return_getter_bridge_methods() throws Exception {
+  void filterGetterMethods_should_not_return_getter_bridge_methods() {
     Method[] methods = ConcreteClass.class.getDeclaredMethods();
-    Method actualGetter = Arrays.stream(methods).filter(Predicate.not(Method::isBridge)).findFirst().orElseThrow();
-    Method bridgeGetter = Arrays.stream(methods).filter(Method::isBridge).findFirst().orElseThrow();
+    Method actualGetter = stream(methods).filter(not(Method::isBridge)).findFirst().orElseThrow();
+    Method bridgeGetter = stream(methods).filter(Method::isBridge).findFirst().orElseThrow();
 
     Method[] methodsActualFirst = new Method[] { actualGetter, bridgeGetter };
     Method[] methodsBridgeFirst = new Method[] { bridgeGetter, actualGetter };
 
-    Set<Method> getterMethods1 = filterGetterMethods(methodsActualFirst, Collections.emptySet(), false);
+    Set<Method> getterMethods1 = filterGetterMethods(methodsActualFirst, emptySet(), false);
     assertThat(getterMethods1).singleElement().extracting(Method::getReturnType).isEqualTo(String.class);
 
-    Set<Method> getterMethods2 = filterGetterMethods(methodsBridgeFirst, Collections.emptySet(), false);
+    Set<Method> getterMethods2 = filterGetterMethods(methodsBridgeFirst, emptySet(), false);
     assertThat(getterMethods2).singleElement().extracting(Method::getReturnType).isEqualTo(String.class);
   }
 
