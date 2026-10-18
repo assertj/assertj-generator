@@ -5,18 +5,18 @@ version: 'v0.0.2'
 workflows:
     '.github/workflows/main.yml':
         - 'actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0'
-        - 'actions/setup-java@1bcf9fb12cf4aa7d266a90ae39939e61372fe520'
+        - 'actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961'
     '.github/workflows/release.yml':
         - 'actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0'
-        - 'actions/setup-java@1bcf9fb12cf4aa7d266a90ae39939e61372fe520'
+        - 'actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961'
 dependencies:
     'actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0':
-        ref: 'v7.0.0'
+        ref: '9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0'
         commit: 'sha1-9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0'
         owner_id: 44036562
         repo_id: 197814629
-    'actions/setup-java@1bcf9fb12cf4aa7d266a90ae39939e61372fe520':
-        ref: 'v5.4.0'
-        commit: 'sha1-1bcf9fb12cf4aa7d266a90ae39939e61372fe520'
+    'actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961':
+        ref: 'v5.7.0'
+        commit: 'sha1-b6effb05e454b25005698d916606bdc6ffcbf961'
         owner_id: 44036562
         repo_id: 196057608
