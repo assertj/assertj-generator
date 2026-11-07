@@ -16,6 +16,7 @@
 
   <modules>
     <module>assertj-generator</module>
+    <module>assertj-generator-maven-plugin</module>
   </modules>
 
   <scm>
